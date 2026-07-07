@@ -1,58 +1,143 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Keahlian</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<title>Pertubuhan Aktivis Keusahawanan</title>
 
-    <style>
-        body{
-            font-family:Arial,sans-serif;
-            background:#111;
-            color:white;
-            text-align:center;
-            padding:30px;
-        }
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-        h1{
-            color:#00d4ff;
-        }
+<style>
 
-        button{
-            width:100%;
-            padding:15px;
-            margin:10px 0;
-            font-size:18px;
-            border:none;
-            border-radius:10px;
-            background:#0088cc;
-            color:white;
-        }
-    </style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#111827;
+    color:white;
+    padding:20px;
+}
+
+.container{
+    max-width:500px;
+    margin:auto;
+}
+
+.card{
+    background:#1f2937;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 0 15px rgba(0,0,0,.3);
+}
+
+h1{
+    color:#00d4ff;
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#ccc;
+    margin-bottom:20px;
+}
+
+.info{
+    margin:8px 0;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    margin-top:12px;
+    border:none;
+    border-radius:12px;
+    font-size:17px;
+    font-weight:bold;
+    background:#0088cc;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0099e6;
+}
+
+.footer{
+    text-align:center;
+    color:#999;
+    margin-top:25px;
+    font-size:13px;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<h1>Pertubuhan Masta</h1>
+<div class="container">
 
-<p>Selamat datang ke Mini App</p>
+<div class="card">
 
-<button>📝 Daftar Ahli</button>
+<h1>Pertubuhan Aktivis Keusahawanan</h1>
 
-<button>👤 Profil Saya</button>
+<p class="subtitle">
+Sistem Keahlian Telegram
+</p>
 
-<button>💳 Kad Ahli</button>
+<div class="info">
+<b>Nama :</b>
+<span id="nama">Loading...</span>
+</div>
+
+<div class="info">
+<b>ID Telegram :</b>
+<span id="userid">Loading...</span>
+</div>
+
+<div class="info">
+<b>Username :</b>
+<span id="username">@-</span>
+</div>
+
+</div>
+
+<button id="btnDaftar">
+📝 Daftar Ahli
+</button>
+
+<button id="btnProfil">
+👤 Profil Saya
+</button>
+
+<button id="btnKad">
+💳 Kad Ahli
+</button>
+
+<button id="btnReferral">
+👥 Referral Saya
+</button>
+
+<button id="btnReward">
+🎁 Ganjaran
+</button>
+
+<div class="footer">
+Versi 1.0
+</div>
+
+</div>
 
 <script>
-Telegram.WebApp.ready();
-Telegram.WebApp.expand();
-</script>
 
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-<script>
 const tg = window.Telegram.WebApp;
 
 tg.ready();
@@ -60,15 +145,29 @@ tg.expand();
 
 const user = tg.initDataUnsafe.user;
 
-if (user) {
-    document.getElementById("username").innerText =
-        user.first_name + " (" + user.id + ")";
+if(user){
+
+document.getElementById("nama").innerHTML=user.first_name ?? "-";
+
+document.getElementById("userid").innerHTML=user.id ?? "-";
+
+document.getElementById("username").innerHTML=user.username ? "@"+user.username : "-";
+
+}else{
+
+document.getElementById("nama").innerHTML="Sila buka melalui Telegram";
+
+document.getElementById("userid").innerHTML="-";
+
+document.getElementById("username").innerHTML="-";
+
 }
+
 </script>
 
-<h2 id="username">Loading...</h2>
-
 <script type="module" src="firebase.js"></script>
-    
+
+<script type="module" src="app.js"></script>
+
 </body>
 </html>
