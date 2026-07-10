@@ -69,5 +69,29 @@ Telegram.WebApp.ready();
 Telegram.WebApp.expand();
 </script>
 
+<script>
+async function daftarAhli() {
+
+    const { error } = await supabase
+      .from("members")
+      .insert([{
+        nama: document.getElementById("nama").value,
+        no_ic: document.getElementById("no_ic").value,
+        telefon: document.getElementById("telefon").value,
+        email: document.getElementById("email").value,
+        alamat: document.getElementById("alamat").value,
+        jantina: document.getElementById("jantina").value,
+        status: "Menunggu"
+      }]);
+
+    if (error) {
+        alert("Pendaftaran gagal");
+        console.error(error);
+    } else {
+        alert("Permohonan berjaya dihantar");
+    }
+}
+</script>
+     
 </body>
 </html>
