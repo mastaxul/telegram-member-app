@@ -91,6 +91,30 @@ Selamat datang ke Mini App rasmi pertubuhan.
 
 <h2>🔎 Semak Status Ahli</h2>
 
+<input 
+id="phoneInput"
+type="text"
+placeholder="Masukkan nombor telefon"
+style="width:90%;padding:12px;"
+>
+
+
+<button onclick="semakAhli()">
+🔍 Semak
+</button>
+
+
+<p id="hasilStatus"></p>
+
+
+<button onclick="kembali()">
+⬅️ Kembali
+</button>
+
+</div>
+
+<h2>🔎 Semak Status Ahli</h2>
+
 <p>
 Fungsi semakan ahli akan dibangunkan.
 </p>
@@ -159,6 +183,48 @@ Hubungi pentadbiran pertubuhan melalui Telegram.
 
 <script>
 
+ function semakAhli(){
+
+let phone = document.getElementById("phoneInput").value;
+
+
+fetch(
+"https://script.google.com/macros/s/AKfycbwcjuolO7uwdoCYuYXFNthmmUIr2Kb5RTcH2tvbl7_XVf5dr-czlZ8Doil3tsofuSbdKQ/exec?phone="
++ phone
+)
+
+.then(response => response.json())
+
+.then(data => {
+
+
+if(data.found){
+
+
+document.getElementById("hasilStatus").innerHTML =
+
+"👤 Nama: " + data.nama +
+"<br>🆔 ID Ahli: " + data.id +
+"<br>📌 Status: " + data.status;
+
+
+}
+
+else {
+
+
+document.getElementById("hasilStatus").innerHTML =
+
+"❌ Rekod ahli tidak dijumpai";
+
+
+}
+
+
+});
+
+
+}   
 
 if(window.Telegram && Telegram.WebApp){
 
