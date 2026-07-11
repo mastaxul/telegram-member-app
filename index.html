@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertubuhan Aktivis Keusahawanan</title>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px;
+            background: #f5f5f5;
+        }
+
+        .box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #0088cc;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>🤝 Pertubuhan Aktivis Keusahawanan</h2>
+
+<p>
+Selamat datang ke Mini App rasmi pertubuhan.
+</p>
+
+<button onclick="daftarAhli()">
+📝 Daftar Ahli
+</button>
+
+<button onclick="maklumat()">
+ℹ️ Maklumat Pertubuhan
+</button>
+
+</div>
+
+
+<script>
+
+const tg = window.Telegram.WebApp;
+
+tg.ready();
+tg.expand();
+
+
+function daftarAhli(){
+
+    window.open(
+        "MASUKKAN_LINK_GOOGLE_FORM_DI_SINI",
+        "_blank"
+    );
+
+}
+
+
+function maklumat(){
+
+    alert(
+    "Pertubuhan Aktivis Keusahawanan\n\nMembina komuniti usahawan dan aktivis."
+    );
+
+}
+
+</script>
+
+
+</body>
+</html>
