@@ -46,35 +46,142 @@
 
 <div class="box">
 
+<div id="utama">
+
 <h2>🤝 Pertubuhan Aktivis Keusahawanan</h2>
 
 <p>
 Selamat datang ke Mini App rasmi pertubuhan.
 </p>
 
-<button onclick="daftarAhli()">
+<button onclick="bukaPage('daftar')">
 📝 Daftar Ahli
 </button>
 
-<button onclick="semakStatus()">
+<button onclick="bukaPage('status')">
 🔎 Semak Status Ahli
 </button>
 
-<button onclick="pengumuman()">
+<button onclick="bukaPage('pengumuman')">
 📢 Pengumuman
 </button>
 
-<button onclick="maklumat()">
+<button onclick="bukaPage('tentang')">
 ℹ️ Tentang Pertubuhan
 </button>
 
-<button onclick="hubungiAdmin()">
+<button onclick="bukaPage('admin')">
 📞 Hubungi Admin
 </button>
 
 </div>
 
 
+<div id="daftar" style="display:none">
+
+<h2>📝 Pendaftaran Ahli</h2>
+
+<p>
+Borang pendaftaran akan disediakan tidak lama lagi.
+</p>
+
+<button onclick="kembali()">
+⬅️ Kembali
+</button>
+
+</div>
+
+
+<div id="status" style="display:none">
+
+<h2>🔎 Semak Status</h2>
+
+<p>
+Fungsi semakan ahli akan dibangunkan.
+</p>
+
+<button onclick="kembali()">
+⬅️ Kembali
+</button>
+
+</div>
+
+
+<div id="pengumuman" style="display:none">
+
+<h2>📢 Pengumuman</h2>
+
+<p>
+Tiada pengumuman terkini.
+</p>
+
+<button onclick="kembali()">
+⬅️ Kembali
+</button>
+
+</div>
+
+
+<div id="tentang" style="display:none">
+
+<h2>ℹ️ Tentang Pertubuhan</h2>
+
+<p>
+Pertubuhan Aktivis Keusahawanan membina komuniti,
+kerjasama dan pembangunan usahawan.
+</p>
+
+<button onclick="kembali()">
+⬅️ Kembali
+</button>
+
+</div>
+
+
+<div id="admin" style="display:none">
+
+<h2>📞 Hubungi Admin</h2>
+
+<p>
+Hubungi pentadbiran pertubuhan melalui Telegram.
+</p>
+
+<button onclick="kembali()">
+⬅️ Kembali
+</button>
+
+</div>
+
+function bukaPage(page){
+
+    document.getElementById("utama").style.display="none";
+
+    document.getElementById(page).style.display="block";
+
+}
+
+
+function kembali(){
+
+    let pages = [
+        "daftar",
+        "status",
+        "pengumuman",
+        "tentang",
+        "admin"
+    ];
+
+    pages.forEach(function(p){
+
+        document.getElementById(p).style.display="none";
+
+    });
+
+
+    document.getElementById("utama").style.display="block";
+
+}
+    
 <script>
 
 const tg = window.Telegram.WebApp;
