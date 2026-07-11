@@ -1,50 +1,53 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pertubuhan Aktivis Keusahawanan</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<title>Pertubuhan Aktivis Keusahawanan</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 30px;
-            background: #f5f5f5;
-        }
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-        .box {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            max-width: 400px;
-            margin: auto;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+<style>
 
-        button {
-            width: 100%;
-            padding: 15px;
-            margin-top: 15px;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            background: #0088cc;
-            color: white;
-        }
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 30px;
+    background: #f5f5f5;
+}
 
-        button:hover {
-            opacity: 0.8;
-        }
-    </style>
+.box {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    max-width: 400px;
+    margin: auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+button {
+    width:100%;
+    padding:15px;
+    margin-top:15px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    cursor:pointer;
+    background:#0088cc;
+    color:white;
+}
+
+</style>
+
 </head>
+
 
 <body>
 
+
 <div class="box">
+
 
 <div id="utama">
 
@@ -54,47 +57,39 @@
 Selamat datang ke Mini App rasmi pertubuhan.
 </p>
 
-<button onclick="bukaPage('daftar')">
+
+<button onclick="daftarAhli()">
 📝 Daftar Ahli
 </button>
+
 
 <button onclick="bukaPage('status')">
 🔎 Semak Status Ahli
 </button>
 
+
 <button onclick="bukaPage('pengumuman')">
 📢 Pengumuman
 </button>
+
 
 <button onclick="bukaPage('tentang')">
 ℹ️ Tentang Pertubuhan
 </button>
 
+
 <button onclick="bukaPage('admin')">
 📞 Hubungi Admin
 </button>
 
-</div>
-
-
-<div id="daftar" style="display:none">
-
-<h2>📝 Pendaftaran Ahli</h2>
-
-<p>
-Borang pendaftaran akan disediakan tidak lama lagi.
-</p>
-
-<button onclick="kembali()">
-⬅️ Kembali
-</button>
 
 </div>
+
 
 
 <div id="status" style="display:none">
 
-<h2>🔎 Semak Status</h2>
+<h2>🔎 Semak Status Ahli</h2>
 
 <p>
 Fungsi semakan ahli akan dibangunkan.
@@ -105,6 +100,8 @@ Fungsi semakan ahli akan dibangunkan.
 </button>
 
 </div>
+
+
 
 
 <div id="pengumuman" style="display:none">
@@ -122,13 +119,14 @@ Tiada pengumuman terkini.
 </div>
 
 
+
+
 <div id="tentang" style="display:none">
 
 <h2>ℹ️ Tentang Pertubuhan</h2>
 
 <p>
-Pertubuhan Aktivis Keusahawanan membina komuniti,
-kerjasama dan pembangunan usahawan.
+Pertubuhan Aktivis Keusahawanan membina komuniti, kerjasama dan pembangunan usahawan.
 </p>
 
 <button onclick="kembali()">
@@ -136,6 +134,8 @@ kerjasama dan pembangunan usahawan.
 </button>
 
 </div>
+
+
 
 
 <div id="admin" style="display:none">
@@ -152,93 +152,72 @@ Hubungi pentadbiran pertubuhan melalui Telegram.
 
 </div>
 
-function bukaPage(page){
 
-    document.getElementById("utama").style.display="none";
+</div>
 
-    document.getElementById(page).style.display="block";
+
+
+<script>
+
+
+if(window.Telegram && Telegram.WebApp){
+
+Telegram.WebApp.ready();
+
+Telegram.WebApp.expand();
 
 }
+
+
+
+
+function daftarAhli(){
+
+Telegram.WebApp.openLink(
+"https://docs.google.com/forms/d/e/1FAIpQLSfWIVNDCtVXQ33tChiVPfiF-XcKJpNUUzN8M700CdXpDUqjgQ/viewform"
+);
+
+}
+
+
+
+
+function bukaPage(page){
+
+document.getElementById("utama").style.display="none";
+
+document.getElementById(page).style.display="block";
+
+}
+
+
 
 
 function kembali(){
 
-    let pages = [
-        "daftar",
-        "status",
-        "pengumuman",
-        "tentang",
-        "admin"
-    ];
-
-    pages.forEach(function(p){
-
-        document.getElementById(p).style.display="none";
-
-    });
+let pages=[
+"status",
+"pengumuman",
+"tentang",
+"admin"
+];
 
 
-    document.getElementById("utama").style.display="block";
+pages.forEach(function(p){
 
-}
-    
-<script>
+document.getElementById(p).style.display="none";
 
-const tg = window.Telegram.WebApp;
-
-tg.ready();
-tg.expand();
+});
 
 
-function daftarAhli() {
-    if (window.Telegram && Telegram.WebApp) {
-        Telegram.WebApp.openLink(
-            "https://docs.google.com/forms/d/e/1FAIpQLSfWIVNDCtVXQ33tChiVPfiF-XcKJpNUUzN8M700CdXpDUqjgQ/viewform"
-        );
-    } else {
-        window.location.href =
-            "https://docs.google.com/forms/d/e/1FAIpQLSfWIVNDCtVXQ33tChiVPfiF-XcKJpNUUzN8M700CdXpDUqjgQ/viewform";
-    }
-}
-
-
-
-function maklumat(){
-
-    alert(
-    "Pertubuhan Aktivis Keusahawanan\n\nMembina komuniti usahawan dan aktivis."
-    );
-
-}
-
-function semakStatus(){
-
-    alert(
-    "Fungsi semakan ahli akan dibangunkan."
-    );
+document.getElementById("utama").style.display="block";
 
 }
 
 
-function pengumuman(){
-
-    alert(
-    "Tiada pengumuman terkini."
-    );
-
-}
-
-
-function hubungiAdmin(){
-
-    alert(
-    "Hubungi admin melalui Telegram."
-    );
-
-}
-    
 </script>
 
 
 </body>
+
 </html>
