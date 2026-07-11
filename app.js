@@ -1,47 +1,66 @@
-import { db } from "./firebase.js";
-
-import {
-  doc,
-  getDoc,
-  setDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
 const tg = window.Telegram.WebApp;
 
 tg.ready();
+tg.expand();
 
 const user = tg.initDataUnsafe.user;
 
-if (user) {
+if (!user) {
+    alert("Sila buka Mini App melalui Telegram.");
+} else {
 
-    const userRef = doc(db, "users", String(user.id));
+    document.getElementById("nama").textContent =
+        user.first_name || "-";
 
-    const snap = await getDoc(userRef);
+    document.getElementById("userid").textContent =
+        user.id || "-";
 
-    if (!snap.exists()) {
+    document.getElementById("username").textContent =
+        user.username ? "@" + user.username : "-";
 
-        await setDoc(userRef, {
+    async function semakAhli() {
 
-            telegramId: user.id,
-            firstName: user.first_name || "",
-            lastName: user.last_name || "",
-            username: user.username || "",
-            language: user.language_code || "",
-            points: 0,
-            referrals: 0,
-            verified: false,
-            memberLevel: "Ahli",
-            createdAt: serverTimestamp()
+        const { data, error } = await window.supabaseClient
+            .from("members")
+            .select("*")
+            .eq("telegram_id", String(user.id))
+            .maybeSingle();
 
-        });
+        if (error) {
+            console.error(error);
+            return;
+        }
 
-        console.log("Ahli baru berjaya didaftarkan.");
+        if (data) {
 
-    } else {
+            document.getElementById("btnProfil").disabled = false;
+            document.getElementById("btnKad").disabled = false;
 
-        console.log("Ahli sudah wujud.");
+        } else {
+
+            document.getElementById("btnProfil").disabled = true;
+            document.getElementById("btnKad").disabled = true;
+
+        }
 
     }
 
+    semakAhli();
+
 }
+
+document.getElementById("btnProfil").onclick = () => {
+    window.location.href = "profil.html";
+};
+
+document.getElementById("btnKad").onclick = () => {
+    window.location.href = "kad.html";
+};
+
+document.getElementById("btnReferral").onclick = () => {
+    alert("Coming Soon");
+};
+
+document.getElementById("btnReward").onclick = () => {
+    alert("Coming Soon");
+};
