@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,21 +13,26 @@
 
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 30px;
-    background: #f5f5f5;
+    text-align:center;
+    padding:30px;
+    background:#f5f5f5;
 }
+
 
 .box {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    max-width: 400px;
-    margin: auto;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    max-width:400px;
+    margin:auto;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+
 }
 
+
 button {
+
     width:100%;
     padding:15px;
     margin-top:15px;
@@ -36,7 +42,31 @@ button {
     cursor:pointer;
     background:#0088cc;
     color:white;
+
 }
+
+
+input {
+
+    width:90%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    margin-top:10px;
+
+}
+
+
+.result {
+
+    margin-top:20px;
+    padding:15px;
+    border-radius:10px;
+    background:#f1f1f1;
+    text-align:left;
+
+}
+
 
 </style>
 
@@ -48,6 +78,8 @@ button {
 
 <div class="box">
 
+
+<!-- MENU UTAMA -->
 
 <div id="utama">
 
@@ -87,15 +119,19 @@ Selamat datang ke Mini App rasmi pertubuhan.
 
 
 
+
+<!-- STATUS AHLI -->
+
+
 <div id="status" style="display:none">
 
 <h2>🔎 Semak Status Ahli</h2>
+
 
 <input 
 id="phoneInput"
 type="text"
 placeholder="Masukkan nombor telefon"
-style="width:90%;padding:12px;"
 >
 
 
@@ -104,124 +140,111 @@ style="width:90%;padding:12px;"
 </button>
 
 
-<p id="hasilStatus"></p>
+<div id="hasilStatus" class="result">
+
+Masukkan nombor telefon untuk semakan.
+
+</div>
 
 
 <button onclick="kembali()">
 ⬅️ Kembali
 </button>
 
-</div>
-
-<h2>🔎 Semak Status Ahli</h2>
-
-
-<button onclick="kembali()">
-⬅️ Kembali
-</button>
 
 </div>
 
 
+
+
+
+<!-- PENGUMUMAN -->
 
 
 <div id="pengumuman" style="display:none">
 
+
 <h2>📢 Pengumuman</h2>
+
 
 <p>
 Tiada pengumuman terkini.
 </p>
 
+
 <button onclick="kembali()">
 ⬅️ Kembali
 </button>
 
+
 </div>
 
 
+
+
+
+
+<!-- TENTANG -->
 
 
 <div id="tentang" style="display:none">
 
+
 <h2>ℹ️ Tentang Pertubuhan</h2>
 
+
 <p>
-Pertubuhan Aktivis Keusahawanan membina komuniti, kerjasama dan pembangunan usahawan.
+
+Pertubuhan Aktivis Keusahawanan membina komuniti,
+kerjasama dan pembangunan usahawan.
+
 </p>
+
 
 <button onclick="kembali()">
 ⬅️ Kembali
 </button>
+
 
 </div>
 
 
 
 
+
+
+<!-- ADMIN -->
+
+
 <div id="admin" style="display:none">
 
+
 <h2>📞 Hubungi Admin</h2>
+
 
 <p>
 Hubungi pentadbiran pertubuhan melalui Telegram.
 </p>
 
+
 <button onclick="kembali()">
 ⬅️ Kembali
 </button>
 
+
 </div>
 
 
 </div>
+
+
 
 
 
 <script>
 
- function semakAhli(){
 
-let phone = document.getElementById("phoneInput").value;
-
-
-fetch(
-"https://script.google.com/macros/s/AKfycbwcjuolO7uwdoCYuYXFNthmmUIr2Kb5RTcH2tvbl7_XVf5dr-czlZ8Doil3tsofuSbdKQ/exec?phone="
-+ phone
-)
-
-.then(response => response.json())
-
-.then(data => {
-
-
-if(data.found){
-
-
-document.getElementById("hasilStatus").innerHTML =
-
-"👤 Nama: " + data.nama +
-"<br>🆔 ID Ahli: " + data.id +
-"<br>📌 Status: " + data.status;
-
-
-}
-
-else {
-
-
-document.getElementById("hasilStatus").innerHTML =
-
-"❌ Rekod ahli tidak dijumpai";
-
-
-}
-
-
-});
-
-
-}   
+// Telegram WebApp
 
 if(window.Telegram && Telegram.WebApp){
 
@@ -234,53 +257,168 @@ Telegram.WebApp.expand();
 
 
 
+// Buka Google Form
+
 function daftarAhli(){
 
-Telegram.WebApp.openLink(
-"https://docs.google.com/forms/d/e/1FAIpQLSfWIVNDCtVXQ33tChiVPfiF-XcKJpNUUzN8M700CdXpDUqjgQ/viewform"
-);
+
+let url =
+"https://docs.google.com/forms/d/e/1FAIpQLSfWIVNDCtVXQ33tChiVPfiF-XcKJpNUUzN8M700CdXpDUqjgQ/viewform";
+
+
+if(window.Telegram && Telegram.WebApp){
+
+Telegram.WebApp.openLink(url);
+
+}
+
+else{
+
+window.open(url,"_blank");
 
 }
 
 
+}
+
+
+
+
+
+
+// Semak ahli melalui Apps Script API
+
+
+function semakAhli(){
+
+
+let phone =
+document.getElementById("phoneInput").value.trim();
+
+
+if(phone==""){
+
+document.getElementById("hasilStatus").innerHTML =
+"⚠️ Sila masukkan nombor telefon.";
+
+return;
+
+}
+
+
+
+document.getElementById("hasilStatus").innerHTML =
+"⏳ Sedang mencari rekod...";
+
+
+
+fetch(
+"https://script.google.com/macros/s/AKfycbwcjuolO7uwdoCYuYXFNthmmUIr2Kb5RTcH2tvbl7_XVf5dr-czlZ8Doil3tsofuSbdKQ/exec?phone="
++encodeURIComponent(phone)
+)
+
+
+.then(response=>response.json())
+
+
+.then(data=>{
+
+
+if(data.found){
+
+
+document.getElementById("hasilStatus").innerHTML =
+
+"👤 Nama: "+data.nama+
+"<br><br>🆔 ID Ahli: "+data.id+
+"<br><br>📌 Status: "+data.status;
+
+
+}
+
+
+else{
+
+
+document.getElementById("hasilStatus").innerHTML =
+
+"❌ Rekod ahli tidak dijumpai.";
+
+
+}
+
+
+})
+
+
+.catch(error=>{
+
+
+document.getElementById("hasilStatus").innerHTML =
+"⚠️ Ralat sambungan API.";
+
+
+});
+
+
+}
+
+
+
+
+
+
+
+// Navigasi page
 
 
 function bukaPage(page){
 
+
 document.getElementById("utama").style.display="none";
+
 
 document.getElementById(page).style.display="block";
 
+
 }
+
+
 
 
 
 
 function kembali(){
 
+
 let pages=[
+
 "status",
 "pengumuman",
 "tentang",
 "admin"
+
 ];
 
 
-pages.forEach(function(p){
+pages.forEach(function(page){
 
-document.getElementById(p).style.display="none";
+
+document.getElementById(page).style.display="none";
+
 
 });
 
 
 document.getElementById("utama").style.display="block";
 
+
 }
+
 
 
 </script>
 
 
 </body>
-
 </html>
