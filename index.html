@@ -84,11 +84,16 @@ tg.expand();
 
 
 function daftarAhli() {
-
-    window.location.href =
-    "https://docs.google.com/forms/d/e/1FAIpQLSfWIVNDCtVXQ33tChiVPfiF-XcKJpNUUzN8M700CdXpDUqjgQ/viewform";
-
+    if (window.Telegram && Telegram.WebApp) {
+        Telegram.WebApp.openLink(
+            "https://docs.google.com/forms/d/e/1FAIpQLSfWIVNDCtVXQ33tChiVPfiF-XcKJpNUUzN8M700CdXpDUqjgQ/viewform"
+        );
+    } else {
+        window.location.href =
+            "https://docs.google.com/forms/d/e/1FAIpQLSfWIVNDCtVXQ33tChiVPfiF-XcKJpNUUzN8M700CdXpDUqjgQ/viewform";
+    }
 }
+
 
 
 function maklumat(){
