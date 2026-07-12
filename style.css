@@ -1,23 +1,4 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 30px;
-    background: #f5f5f5;
-}
-
-
-.box {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    max-width: 400px;
-    margin: auto;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-
 button {
-
     width:100%;
     padding:15px;
     margin-top:15px;
@@ -25,29 +6,38 @@ button {
     border-radius:10px;
     font-size:16px;
     cursor:pointer;
-    background:#0088cc;
     color:white;
-
 }
 
 
-input {
+/* Butang 1 - Daftar Ahli */
+button:nth-of-type(1) {
+    background:#FFD700; /* Kuning */
+    color:black;
+}
 
-    width:90%;
-    padding:12px;
-    border-radius:8px;
+
+/* Butang 2 - Semak Status */
+button:nth-of-type(2) {
+    background:#000000; /* Hitam */
+}
+
+
+/* Butang 3 - Pengumuman */
+button:nth-of-type(3) {
+    background:#D00000; /* Merah */
+}
+
+
+/* Butang 4 - Tentang */
+button:nth-of-type(4) {
+    background:#FFFFFF; /* Putih */
+    color:black;
     border:1px solid #ccc;
-    margin-top:10px;
-
 }
 
 
-.result {
-
-    margin-top:20px;
-    padding:15px;
-    border-radius:10px;
-    background:#f1f1f1;
-    text-align:left;
-
+/* Butang 5 - Admin */
+button:nth-of-type(5) {
+    background:#8B4513; /* Coklat */
 }
