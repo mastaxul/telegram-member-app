@@ -1,35 +1,63 @@
-<div id="utama">
+button {
 
-<h2>🤝 Pertubuhan Aktivis Keusahawanan</h2>
-
-<p>
-Selamat datang ke Mini App rasmi pertubuhan.
-</p>
-
-
-<button class="btn-hitam" onclick="daftarAhli()">
-📝 Daftar Ahli
-</button>
-
-
-<button class="btn-merah" onclick="bukaPage('status')">
-🔎 Semak Status Ahli
-</button>
+    width:100%;
+    padding:15px;
+    margin-top:15px;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
 
 
-<button class="btn-coklat" onclick="bukaPage('pengumuman')">
-📢 Pengumuman
-</button>
+/* Hitam */
+.btn-hitam {
+    background:#111;
+    color:white;
+}
 
 
-<button class="btn-putih" onclick="bukaPage('tentang')">
-ℹ️ Tentang Pertubuhan
-</button>
+/* Merah */
+.btn-merah {
+    background:#c62828;
+    color:white;
+}
 
 
-<button class="btn-hijau" onclick="bukaPage('admin')">
-📞 Hubungi Admin
-</button>
+/* Coklat */
+.btn-coklat {
+    background:#795548;
+    color:white;
+}
 
 
-</div>
+/* Putih */
+.btn-putih {
+    background:white;
+    color:#222;
+    border:1px solid #ddd;
+}
+
+
+/* Hijau */
+.btn-hijau {
+    background:#2e7d32;
+    color:white;
+}
+
+
+/* Kotak keputusan semakan */
+
+.result {
+
+    margin-top:20px;
+    padding:18px;
+    border-radius:12px;
+    background:#ffffff;
+    color:#222;
+    text-align:left;
+    border:1px solid #ddd;
+    line-height:1.6;
+
+}
